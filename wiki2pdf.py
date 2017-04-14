@@ -1,6 +1,7 @@
 import wikipedia
 import pdfkit
 import os
+from gtts import gTTS
 
 class Page:
 
@@ -16,7 +17,7 @@ class Page:
     		'minimum-font-size': 512
 		}
 
-		self.targetDir = os.getcwd() #os.path.dirname(os.path.realpath(__file__))
+		self.targetDir = os.path.dirname(os.path.realpath(__file__))
 		self.includeLinks = False
 
 	def getArticle(self, articleTitle):
@@ -42,4 +43,7 @@ class Page:
 				print "Downloading " + linkedPage.url
 				filename = self.targetDir+"/"+linkedPage.title+'.pdf'
 				pdfkit.from_url(linkedPage.url, filename, options=self.pdfOptions)
+
+	def speak(self):
+		pass
 

@@ -2,9 +2,9 @@ A tool for interacting with wikipedia.
 
 Goals:
 
-1. download a wiki article to pdf
+1.(done) download a wiki article to pdf
 
-2. include the option to download articles it links to
+2. (done) include the option to download articles it links to
 
 3. text to speech
 
