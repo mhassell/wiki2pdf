@@ -6,8 +6,8 @@ from gtts import gTTS
 class Page:
 
 	def __init__(self):
-		"""Set default pdfkit options"""
-		self.pdfOptions = {
+		"""Set default pdfkit options."""
+		self.pdf_options = {
     		'page-size': 'Letter',
     		'margin-top': '0.75in',
     		'margin-right': '0.75in',
@@ -17,32 +17,30 @@ class Page:
     		'minimum-font-size': 512
 		}
 
-		self.targetDir = os.path.dirname(os.path.realpath(__file__))
-		self.includeLinks = False
+		self.target_dir = os.path.dirname(os.path.realpath(__file__))
+		self.include_links = False
 
-	def getArticle(self, articleTitle):
-		"""fetch the article from wiki by title"""
-		self.page = wikipedia.page(articleTitle)
+	def getArticle(self, article_title):
+		"""Fetch the article from wiki by title."""
+		self.page = wikipedia.page(article_title)
 		try:
-			self.page.summary
+			print self.page.summary
 		except wikipedia.exceptions.DisambiguationError as e:
 			print "Multiple articles with that name: " + e.options
 
 	def setURL(self,URL):
-		"""fetch the article by URL"""
+		"""Fetch the article by URL."""
 		pass
 
 	def download(self):
-		"""download the article (and maybe the articles it links to"""
-		if self.includeLinks == False:
-			filename = self.targetDir+"/"+self.page.title+'.pdf'
-			pdfkit.from_url(self.page.url, filename, options = self.pdfOptions)
-		else:
-			for link in self.page.links:
-				linkedPage = wikipedia.page(link)
-				print "Downloading " + linkedPage.url
-				filename = self.targetDir+"/"+linkedPage.title+'.pdf'
-				pdfkit.from_url(linkedPage.url, filename, options=self.pdfOptions)
+		"""Download the article (and maybe the articles it links to."""
+
+		links = [self.page, self.page.links] if self.include_links else [self.page]
+		for link in links:
+			linked_page = wikipedia.page(link)
+			print "Downloading " + linked_page.url
+			filename = self.target_dir + "/" + linked_page.title + '.pdf'
+			pdfkit.from_url(linked_page.url, filename, options=self.pdf_options)
 
 	def speak(self):
 		pass
