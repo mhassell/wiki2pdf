@@ -1,4 +1,4 @@
-A tool for interacting with wikipedia.
+A tool for downloading wiki articles to PDF to enjoy on long flights, when your iPad doesn't have data, or you are over your data limit (grumbles).
 
 Goals:
 
