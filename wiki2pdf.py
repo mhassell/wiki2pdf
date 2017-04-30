@@ -29,7 +29,7 @@ class Page:
 			print "Multiple articles with that name: " + e.options
 
 	def setURL(self,URL):
-		"""Fetch the article by URL."""
+		"""Fetch the article by URL (not yet supported by the wikipedia module)"""
 		pass
 
 	def download(self):
@@ -42,6 +42,14 @@ class Page:
 			filename = self.target_dir + "/" + linked_page.title + '.pdf'
 			pdfkit.from_url(linked_page.url, filename, options=self.pdf_options)
 
-	def speak(self):
-		pass
+	def saveAudio(self):
+		""" """
+		links = [self.page, self.page.links] if self.include_links else [self.page]
+		for link in links:
+			linked_page = wikipedia.page(link)
+			print "Downloading as audio: " + linked_page.url
+			tts = gTTS(linked_page.content, lang='en')
+			filename = self.target_dir + "/" + linked_page.title + '.mp3'
+			tts.save(filename)
+			
 
