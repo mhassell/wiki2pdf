@@ -8,4 +8,4 @@ Goals:
 
 3. text to speech (need to parse just the article, and not the TeX code, index, links, and extra info)
 
-4. export article as mp3 for an audiobook experience!
+4. (done but super slow) export article as mp3 for an audiobook experience!
